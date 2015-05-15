@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package com.example.compraonline;
+package br.com.compraondeline;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;
