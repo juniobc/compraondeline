@@ -51,11 +51,6 @@ class DataHandler extends SQLiteOpenHelper
         onCreate(db);
     }
 
-	
-	/**
-     * All CRUD(Create, Read, Update, Delete) Operations
-     */
-
     // Adding new contact
     void addProduto(Produto produto) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -90,10 +85,10 @@ class DataHandler extends SQLiteOpenHelper
     }
 
     // Getting All Contacts
-    public List<Produto> getAllContacts() {
+    public List<Produto> getAllPordutos() {
         List<Produto> produtoList = new ArrayList<Produto>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_PRODUTO;
+        String selectQuery = "SELECT "+KEY_NM_PROD+", "+KEY_PRECO+", "+KEY_CD_BARRA+", "+KEY_QUANT+", "+KEY_LAT+", "+KEY_LONG+" FROM " + TABLE_PRODUTO;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -104,7 +99,9 @@ class DataHandler extends SQLiteOpenHelper
                 Produto produto = new Produto();
                 produto.setNome(cursor.getString(0));
 				produto.setPreco(cursor.getString(1));
-				produto.setQuantidade(cursor.getString(2));
+				produto.setQuantidade(cursor.getString(3));
+				produto.setNrLat(cursor.getString(4));
+				produto.setNrLong(cursor.getString(5));
                 // Adding contact to list
                 produtoList.add(produto);
             } while (cursor.moveToNext());
@@ -115,35 +112,37 @@ class DataHandler extends SQLiteOpenHelper
     }
 
     // Updating single contact
-    public int updateContact(Produto produto) {
+    public int updateProduto(Produto produto) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_LONG, contact.getName());
-        values.put(KEY_PH_, contact.getPhoneNumber());
+        values.put(KEY_NM_PROD, produto.getNome());
+        values.put(KEY_PRECO, produto.getPreco());
+        values.put(KEY_CD_BARRA, produto.getCdBarra());
+        values.put(KEY_QUANT, produto.getQuantidade());
+        values.put(KEY_LAT, produto.getNrLat());
+        values.put(KEY_LONG, produto.getNrLong());
 
         // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-						 new String[] { String.valueOf(contact.getID()) });
+        return db.update(TABLE_PRODUTO, values, KEY_NM_PROD + " = ?",
+						 new String[] { String.valueOf(produto.getNome()) });
     }
 
     // Deleting single contact
-    public void deleteContact(Contact contact) {
+    public void deleteProduto(Produto produto) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-				  new String[] { String.valueOf(contact.getID()) });
+        db.delete(TABLE_PRODUTO, KEY_ID + " = ?",
+				  new String[] { String.valueOf(produto.getNome()) });
         db.close();
     }
 
 
-    // Getting contacts Count
-    public int getContactsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+    public int getProdutosCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_PRODUTO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
 
-        // return count
         return cursor.getCount();
     }
 	

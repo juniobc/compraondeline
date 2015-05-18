@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#FFFFFF"
+  android:orientation="vertical" >
+  
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E3E3E3"
+        android:gravity="center" >
+        
+        <TableRow>
+            
+            <TextView 
+			    android:id="@+id/view_state"
+			    android:layout_width="100dp"
+	            android:layout_height="50dp"
+	            android:text="Nome: "/>
+            
+            <EditText  
+	            android:id="@+id/nm_prod"
+			    android:layout_width="50dp" 
+			    android:layout_height="40dp" 
+			    android:layout_weight="1"
+			    android:layout_marginLeft="10dp"
+			    android:layout_marginTop="10dp"
+			    android:layout_marginBottom="10dp"
+			    android:layout_marginRight="10dp"
+			    android:background="@drawable/text_borda" />
+	        
+            
+        </TableRow>
+        
+        <TableRow>
+            
+	            <TextView 
+				    android:id="@+id/txt_preco_prod"
+				    android:layout_width="100dp"
+		            android:layout_height="50dp"
+		            android:text="Preço: "/>
+	            
+	            <EditText  
+		            android:id="@+id/preco_prod"
+				    android:layout_width="50dp" 
+				    android:layout_height="40dp" 
+				    android:layout_weight="1"
+				    android:layout_marginLeft="10dp"
+				    android:layout_marginTop="10dp"
+				    android:layout_marginBottom="10dp"
+				    android:layout_marginRight="10dp"
+				    android:background="@drawable/text_borda" />
+            
+            </TableRow>
+            
+        	<TableRow>
+            
+	            <TextView 
+				    android:id="@+id/txt_quant_prod"
+				    android:layout_width="100dp"
+		            android:layout_height="50dp"
+		            android:text="Qunatidade: "/>
+	            
+	            <EditText  
+		            android:id="@+id/quant_prod"
+				    android:layout_width="50dp" 
+				    android:layout_height="40dp" 
+				    android:layout_weight="1"
+				    android:layout_marginLeft="10dp"
+				    android:layout_marginTop="10dp"
+				    android:layout_marginBottom="10dp"
+				    android:layout_marginRight="10dp"
+				    android:background="@drawable/text_borda" />
+            
+            </TableRow>
+            
+        	<TableRow>
+            
+	            <TextView 
+				    android:id="@+id/txt_lat_prod"
+				    android:layout_width="100dp"
+		            android:layout_height="50dp"
+		            android:text="Latitude: "/>
+	            
+	            <EditText  
+		            android:id="@+id/lat_prod"
+				    android:layout_width="50dp" 
+				    android:layout_height="40dp" 
+				    android:layout_weight="1"
+				    android:layout_marginLeft="10dp"
+				    android:layout_marginTop="10dp"
+				    android:layout_marginBottom="10dp"
+				    android:layout_marginRight="10dp"
+				    android:background="@drawable/text_borda" />
+            
+            </TableRow>
+            
+        	<TableRow>
+            
+	            <TextView 
+				    android:id="@+id/txt_long_prod"
+				    android:layout_width="100dp"
+		            android:layout_height="50dp"
+		            android:text="Longitude: "/>
+	            
+	            <EditText  
+		            android:id="@+id/long_prod"
+				    android:layout_width="50dp" 
+				    android:layout_height="40dp" 
+				    android:layout_weight="1"
+				    android:layout_marginLeft="10dp"
+				    android:layout_marginTop="10dp"
+				    android:layout_marginBottom="10dp"
+				    android:layout_marginRight="10dp"
+				    android:background="@drawable/text_borda" />
+            
+            </TableRow>
+            
+        	<TableRow>
+            
+	            <Button
+	            android:id="@+id/btn_busca_nfe"
+	            android:layout_width="wrap_content"
+	            android:layout_height="32dp"
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginTop="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_weight="1"
+	            android:background="@drawable/buscar_borda"
+	            android:text="teste2"
+	            android:textColor="#FFFFFF"
+	            android:textSize="12sp" />
+            
+            </TableRow>
+
+    </TableLayout>
+    
+    <ListView
+           android:id="@+id/produtos_nfe"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:ems="10"
+           android:gravity="top|left"
+           android:inputType="textMultiLine"
+           android:textSize="13sp">
+   	</ListView>
+    
+</LinearLayout>

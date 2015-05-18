@@ -27,7 +27,7 @@ public class MainActivity extends Activity{
 	public void onCreate(Bundle bundle){
 		
 		super.onCreate(bundle);
-		setContentView(R.layout.compraondeline);
+		setContentView(R.layout.home);
 		
 		/*btnShowLocation = (Button) findViewById(R.id.busca_prod);
         

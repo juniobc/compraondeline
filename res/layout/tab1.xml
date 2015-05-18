@@ -13,9 +13,9 @@
         android:gravity="center" >
         
         <TableRow>
-            
-            <EditText  
-	            android:id="@+id/nm_prod"
+	
+	        <EditText  
+	            android:id="@+id/chave_acesso"
 			    android:layout_width="50dp" 
 			    android:layout_height="40dp" 
 			    android:layout_weight="1"
@@ -23,20 +23,12 @@
 			    android:layout_marginTop="10dp"
 			    android:layout_marginBottom="10dp"
 			    android:layout_marginRight="10dp"
-			    android:inputType="text"
+			    android:inputType="number"
+			    android:text=""
 			    android:background="@drawable/text_borda" />
-            
-            <ImageView
-	            android:id="@+id/busca_cd_barra"
-	            android:layout_width="5dp" 
-			    android:layout_height="40dp" 
-			    android:layout_weight="1"
-			    android:layout_marginTop="10dp"
-			    android:layout_marginBottom="10dp"
-	            android:src="@drawable/foto" />
 	
 	        <Button
-	            android:id="@+id/busca_prod"
+	            android:id="@+id/btn_busca_nfe"
 	            android:layout_width="180dp"
 	            android:layout_height="32dp"
 	            android:layout_marginBottom="10dp"
@@ -44,9 +36,8 @@
 	            android:layout_marginRight="10dp"
 	            android:layout_weight="1"
 	            android:background="@drawable/buscar_borda"
-	            android:text="Buscar Produto"
+	            android:text="Consulta Produto"
 	            android:textColor="#FFFFFF"
-	            android:onClick="buscaLocal"
 	            android:textSize="12sp" />
             
         </TableRow>
@@ -55,7 +46,7 @@
     </TableLayout>
     
     <ListView
-           android:id="@+id/list_prod"
+           android:id="@+id/produtos_cb"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_weight="1"
