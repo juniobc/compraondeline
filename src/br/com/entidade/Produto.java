@@ -4,47 +4,37 @@ import android.graphics.Bitmap;
 
 public class Produto {
 	
-	private String cdProduto;
-	private int cdNmc;
 	private String preco;
 	private String nome;
-	private int quantidade;
-	private float icms;
-	private long cdBarra;
-	private Bitmap img;
+	private String quantidade;
+	private String cdBarra;
+	private String nrLat;
+	private String nrLong;
 	
 	public Produto(){}
-	public Produto(String cd_produto, int cd_nmc, long cd_barra, String preco, String nome, int quantidade, float icms, Bitmap img) {
+	
+	public Produto(String preco, String nome, String quantidade, String nr_lat, String nr_long) {
 		
 		super();
 		
-		this.cdProduto = cd_produto;
-		this.cdNmc = cd_nmc;
-		this.cdBarra = cd_barra;
 		this.preco = preco;
 		this.nome = nome;
 		this.quantidade = quantidade;
-		this.icms = icms;
-		this.img = img;
+		this.nrLat = nr_lat;
+		this.nrLong = nr_long;
 		
 	}
 	
-	public Bitmap getImg(){
+	public String getNrLat(){
 		
-		return img;
+		return this.nrLat;
 		
-	}	
+	}
 	
-	public String getCdProduto(){
-		
-		return cdProduto;
-		
-	}	
-	
-	public int getCdNmc(){
-		
-		return cdNmc;
-		
+	public String getNrLong(){
+
+		return this.nrLong;
+
 	}
 	
 	public String getPreco(){
@@ -59,46 +49,15 @@ public class Produto {
 		
 	}
 	
-	public int getQuantidade(){
+	public String getQuantidade(){
 		
 		return quantidade;
 		
 	}
 	
-	public float getIcms(){
-		
-		return icms;
-		
-	}
-	
-	public long getCdBarra(){
+	public String getCdBarra(){
 		
 		return cdBarra;
-		
-	}
-	
-	public Bitmap setImg(Bitmap img){
-		
-		this.img = img;
-		
-		return img;
-		
-	}
-	
-	
-	public String setCdProduto(String cdProduto){
-		
-		this.cdProduto = cdProduto;
-		
-		return cdProduto;
-		
-	}	
-	
-	public int setCdNmc(int cdNmc){
-		
-		this.cdNmc = cdNmc;
-		
-		return cdNmc;
 		
 	}
 	
@@ -118,7 +77,7 @@ public class Produto {
 		
 	}
 	
-	public int setQuantidade(int quantidade){
+	public String setQuantidade(String quantidade){
 		
 		this.quantidade = quantidade;
 		
@@ -126,15 +85,7 @@ public class Produto {
 		
 	}
 	
-	public float setIcms(float icms){
-		
-		this.icms= icms; 
-		
-		return icms;
-		
-	}
-	
-	public long setCdBarra(long cdBarra){
+	public String setCdBarra(String cdBarra){
 		
 		this.cdBarra = cdBarra;
 		
@@ -142,6 +93,17 @@ public class Produto {
 		
 	}
 	
+	public void setNrLat(String lat){
+		
+		this.nrLat = lat;
+		
+	}
+	
+	public void setNrLong(String nrLong){
+
+		this.nrLong = nrLong;
+
+	}
 	
 	
 }

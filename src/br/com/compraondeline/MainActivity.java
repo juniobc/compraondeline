@@ -29,7 +29,7 @@ public class MainActivity extends Activity{
 		super.onCreate(bundle);
 		setContentView(R.layout.compraondeline);
 		
-		btnShowLocation = (Button) findViewById(R.id.busca_prod);
+		/*btnShowLocation = (Button) findViewById(R.id.busca_prod);
         
         // show location button click event
         btnShowLocation.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +55,11 @@ public class MainActivity extends Activity{
                 }
                  
             }
-        });
+        });*/
 		
 	}
 	
-	public void buscaNomeProduto(View view){
+	/*public void buscaNomeProduto(View view){
 	    		    	
 			list_prod = (ListView) findViewById(R.id.list_prod);
 			nm_prod = (EditText) findViewById(R.id.nm_prod);
@@ -68,6 +68,37 @@ public class MainActivity extends Activity{
 			buscaNmProd.execute(new String[]{captcha.getText().toString().toUpperCase(), chave_acesso.getText().toString(), 
 					view_state.getText().toString(),event_validation.getText().toString(), token.getText().toString()});
     	
+    }*/
+	
+	
+	public void buscaLocal(View view){
+
+		// create class object
+		gps = new GPSTracker(MainActivity.this);
+
+		// check if GPS enabled     
+		if(gps.canGetLocation()){
+
+			double latitude = gps.getLatitude();
+			double longitude = gps.getLongitude();
+
+			// \n is for new line
+			Toast.makeText(getApplicationContext(), 
+			"Your Location is - \nLat: " + latitude + "\nLong: " + 
+			longitude, Toast.LENGTH_LONG).show();    
+			
+		}else{
+			// can't get location
+			// GPS or Network is not enabled
+			// Ask user to enable GPS/network in settings
+			gps.showSettingsAlert();
+		}
+
     }
 
+	public void gravaProd(View view){
+
+
+    }
+	
 }
