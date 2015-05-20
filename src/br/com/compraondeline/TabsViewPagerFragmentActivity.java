@@ -5,21 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import br.com.compraondeline.auxiliar.Retorno;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+
 import br.com.localizacao.GPSTracker;
 import android.content.Context;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TabHost.TabContentFactory;
+
+
   
 
 public class TabsViewPagerFragmentActivity extends FragmentActivity implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
@@ -29,9 +32,6 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, TabsViewPagerFragmentActivity.TabInfo>();
     private PagerAdapter mPagerAdapter;
     private Fragment currentFragment;
-    private String responseText = null;
-    private ListView produtos_nfe;
-    private ListView produtos_cb;
 
     private class TabInfo {
          private String tag;
@@ -187,31 +187,14 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         if(position==1){
         	
         	GPSTracker gps;
-        	currentFragment = mPagerAdapter.getItem(mViewPager.getCurrentItem());
-        	TextView nr_lat;
-        	TextView nr_long;
+        	this.currentFragment = mPagerAdapter.getItem(mViewPager.getCurrentItem());
 
-    		// create class object
     		gps = new GPSTracker(TabsViewPagerFragmentActivity.this);
 
-    		// check if GPS enabled     
-    		if(gps.canGetLocation()){
-
-    			double latitude = gps.getLatitude();
-    			double longitude = gps.getLongitude();
-    			
-    			nr_lat = (TextView) currentFragment.getView().findViewById(R.id.lat_prod);
-    			nr_lat.setText(Double.toString(latitude));
-    			
-    			nr_long = (TextView) currentFragment.getView().findViewById(R.id.long_prod);
-    			nr_long.setText(Double.toString(longitude));
-    			
-    		}else{
-    			// can't get location
-    			// GPS or Network is not enabled
-    			// Ask user to enable GPS/network in settings
-    			gps.showSettingsAlert();
-    		}
+			double latitude = gps.getLatitude();
+			double longitude = gps.getLongitude();
+			
+			Tab2Fragment.updateLocation(latitude, longitude);
         	
         }
         

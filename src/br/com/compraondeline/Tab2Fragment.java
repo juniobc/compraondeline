@@ -1,72 +1,125 @@
 package br.com.compraondeline;
 
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
 import br.com.localizacao.GPSTracker;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-  
+import br.com.maps.CustomMapFragment;
+
 /**
  * @author mwho
  *
  */
-public class Tab2Fragment extends Fragment {
+public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapReadyListener  {
 	
-	private TextView nr_lat;
-	private TextView nr_long;
-	private String nrLat;
-	private String nrLong;
-	private View view;
+	private static TextView end_prod;
+	private static Geocoder geocoder;
+		
+	private static CustomMapFragment mMapFragment;
+	private static GoogleMap mMap;
 	
-    /** (non-Javadoc)
-     * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-     */
+	private double nrLat;
+	private double nrLong;
+	
+	public Tab2Fragment() {
+	    super();
+
+	}
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
     	
-    	this.view = inflater.inflate(R.layout.tab2, container, false);
+    	View view = inflater.inflate(R.layout.tab2, container, false);
     	
     	buscaLocal();
     	
-    	nr_lat = (TextView) this.view.findViewById(R.id.lat_prod);
-    	nr_lat.setText(this.nrLat);
+    	mMapFragment = CustomMapFragment.newInstance();
+        getChildFragmentManager().beginTransaction().replace(R.id.map, mMapFragment).commit();
     	
-    	nr_long = (TextView) this.view.findViewById(R.id.long_prod);
-    	nr_long.setText(this.nrLong);
-    		    	
-        if (container == null) {
-            // We have different layouts, and in one of them this
-            // fragment's containing frame doesn't exist.  The fragment
-            // may still be created from its saved state, but there is
-            // no reason to try to create its view hierarchy because it
-            // won't be displayed.  Note this is not needed -- we could
-            // just run the code below, where we would create and return
-            // the view hierarchy; it would just never be used.
-            return null;
+    	Fragment fragment = getParentFragment();
+        if (fragment != null && fragment instanceof OnMapReadyListener) {
+            ((OnMapReadyListener) fragment).onMapReady();
         }
+        
+        geocoder = new Geocoder(getActivity(), Locale.getDefault());
+    	
+    	end_prod = (TextView) view.findViewById(R.id.end_prod);
+    	
         return view;
     }
     
     @Override
-    public void onPause() {
-
-    	super.onPause();
-      
-      	buscaLocal();
-	 	
-		nr_lat = (TextView) view.findViewById(R.id.lat_prod);
-		nr_lat.setText(this.nrLat);
-		
-		nr_long = (TextView) view.findViewById(R.id.long_prod);
-		nr_long.setText(this.nrLong);
-      
+    public void onMapReady() {
+        mMap = mMapFragment.getMap();
+        mMap.setMyLocationEnabled(true);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(this.nrLat, this.nrLong), 15);
+        mMap.animateCamera(cameraUpdate);
+    }
+    
+    public static void updateLocation(double nrLat, double nrLong){
+    	
+    	String endereco;
+    	
+    	endereco = "";
+    	
+    	mMap = mMapFragment.getMap();
+        mMap.setMyLocationEnabled(true);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(nrLat, nrLong), 15);
+        mMap.animateCamera(cameraUpdate);
+        
+        try {    		
+    	
+	    	List<Address> addresses = geocoder.getFromLocation(nrLat, nrLong, 1);
+	    	
+	        if (addresses.size() > 0) {
+	        	
+	            Address address = addresses.get(0);
+	            
+	            if(address.getLocality() != null)
+	            	endereco = endereco + " " + address.getLocality();
+	            if(address.getSubLocality() != null)
+	            	endereco = endereco + " " + address.getSubLocality();
+	            if(address.getSubAdminArea() != null)
+	            	endereco = endereco + " " + address.getSubAdminArea();
+	            if(address.getAdminArea() != null)
+	            	endereco = endereco + " " + address.getAdminArea();
+	            if(address.getCountryName() != null)
+	            	endereco = endereco + " " + address.getCountryName();
+	            
+	            end_prod.setText(endereco);
+	            //result.append(address.getLocality()).append("\n");
+	            //result.append(address.getCountryName());
+	        }
+        
+    	}catch (IOException e) {
+            Log.e("Tab2Fragment", e.getMessage());
+        }
+    	
+    }
+    
+    /**
+     * Listener interface to tell when the map is ready
+     */
+    public static interface OnMapReadyListener {
+        void onMapReady();
     }
     
     public void buscaLocal(){
@@ -78,12 +131,9 @@ public class Tab2Fragment extends Fragment {
 
 		// check if GPS enabled     
 		if(gps.canGetLocation()){
-
-			double latitude = gps.getLatitude();
-			double longitude = gps.getLongitude();
 			
-			this.nrLat = Double.toString(latitude);
-			this.nrLong = Double.toString(longitude); 
+			this.nrLat = gps.getLatitude();
+			this.nrLong = gps.getLongitude();
 			
 		}else{
 			// can't get location
