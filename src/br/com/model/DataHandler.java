@@ -6,7 +6,7 @@ import android.database.*;
 import java.util.*;
 
 
-class DataHandler extends SQLiteOpenHelper
+public class DataHandler extends SQLiteOpenHelper
 {
 
     // Database Version
@@ -52,7 +52,7 @@ class DataHandler extends SQLiteOpenHelper
     }
 
     // Adding new contact
-    void addProduto(Produto produto) {
+    public void addProduto(Produto produto) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -85,7 +85,7 @@ class DataHandler extends SQLiteOpenHelper
     }
 
     // Getting All Contacts
-    public List<Produto> getAllPordutos() {
+    public List<Produto> getAllProdutos() {
         List<Produto> produtoList = new ArrayList<Produto>();
         // Select All Query
         String selectQuery = "SELECT "+KEY_NM_PROD+", "+KEY_PRECO+", "+KEY_CD_BARRA+", "+KEY_QUANT+", "+KEY_LAT+", "+KEY_LONG+" FROM " + TABLE_PRODUTO;
@@ -131,8 +131,15 @@ class DataHandler extends SQLiteOpenHelper
     // Deleting single contact
     public void deleteProduto(Produto produto) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PRODUTO, KEY_ID + " = ?",
+        db.delete(TABLE_PRODUTO, KEY_NM_PROD + " = ?",
 				  new String[] { String.valueOf(produto.getNome()) });
+        db.close();
+    }
+    
+ // Deleting single contact
+    public void deleteAllProduto() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PRODUTO, null, null);
         db.close();
     }
 

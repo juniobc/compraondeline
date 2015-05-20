@@ -475,6 +475,7 @@ containing a value of this type.
         public static final int adjust_width=0x7f090001;
         public static final int book_now=0x7f090010;
         public static final int btn_busca_nfe=0x7f090020;
+        public static final int btn_busca_prod=0x7f090029;
         public static final int busca_cd_barra=0x7f09001a;
         public static final int busca_prod=0x7f09001b;
         public static final int busca_prod1=0x7f09001e;
@@ -491,7 +492,7 @@ containing a value of this type.
         public static final int holo_light=0x7f090008;
         public static final int hybrid=0x7f090003;
         public static final int list_prod=0x7f09001c;
-        public static final int map=0x7f090029;
+        public static final int map=0x7f09002a;
         public static final int match_parent=0x7f09000e;
         public static final int monochrome=0x7f090016;
         public static final int nm_prod=0x7f090019;
@@ -506,13 +507,13 @@ containing a value of this type.
         public static final int selectionDetails=0x7f09000d;
         public static final int slide=0x7f090017;
         public static final int strict_sandbox=0x7f09000b;
-        public static final int tabsLayout=0x7f09002a;
+        public static final int tabsLayout=0x7f09002b;
         public static final int terrain=0x7f090006;
-        public static final int txt_aba=0x7f09002b;
+        public static final int txt_aba=0x7f09002c;
         public static final int txt_end_prod=0x7f090027;
+        public static final int txt_nm_prod=0x7f090022;
         public static final int txt_preco_prod=0x7f090023;
         public static final int txt_quant_prod=0x7f090025;
-        public static final int view_state=0x7f090022;
         public static final int viewpager=0x7f090018;
         public static final int wrap_content=0x7f09000f;
     }

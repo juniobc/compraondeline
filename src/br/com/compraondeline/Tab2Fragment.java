@@ -11,7 +11,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import br.com.entidade.Produto;
 import br.com.localizacao.GPSTracker;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -20,12 +23,17 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import br.com.maps.CustomMapFragment;
+import br.com.model.*;
 
 /**
- * @author mwho
+ * @author Sebastio Junio
  *
  */
 public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapReadyListener  {
@@ -38,6 +46,10 @@ public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapRea
 	
 	private double nrLat;
 	private double nrLong;
+	private Button cadastrar;
+	private EditText nmProd;
+	private EditText nmPreco;
+	private EditText nmQuant;
 	
 	public Tab2Fragment() {
 	    super();
@@ -63,8 +75,53 @@ public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapRea
     	
     	end_prod = (TextView) view.findViewById(R.id.end_prod);
     	
+    	nmProd = (EditText) view.findViewById(R.id.nm_prod);
+    	nmPreco = (EditText) view.findViewById(R.id.preco_prod);
+    	nmQuant = (EditText) view.findViewById(R.id.quant_prod);
+    	
+    	cadastrar = (Button) view.findViewById(R.id.btn_busca_prod);
+    	cadastrar.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+            	
+            	if(nmProd.getText().toString().trim().equals("")){            		
+            		
+            		Toast.makeText(getActivity(), "Informe o nome do produto", Toast.LENGTH_LONG).show();
+            		
+            	}else if(nmPreco.getText().toString().trim().equals("")){            		
+            		
+            		Toast.makeText(getActivity(), "Informe o preco", Toast.LENGTH_LONG).show();
+            		
+            	}else if(nmQuant.getText().toString().trim().equals("")){            		
+					
+					Toast.makeText(getActivity(), "Informe a quantidade", Toast.LENGTH_LONG).show();
+					
+				}else{
+					
+					DataHandler db = new DataHandler(getActivity());
+	            	
+	                db.addProduto(new Produto(nmProd.getText().toString(), nmPreco.getText().toString(), 
+	                		nmQuant.getText().toString(), Double.toString(nrLat), Double.toString(nrLong))); 
+	                
+	                List<Produto> produtos = db.getAllProdutos();       
+	                
+	                for (Produto cn : produtos) {
+	                    String log = "Nome: "+cn.getNome()+" ,Preco: " + cn.getPreco() 
+	                    		+ " ,Quantidade: " + cn.getQuantidade() + " ,Latitude: " + cn.getNrLat() + " ,Latitude: " + cn.getNrLong();
+	                        // Writing Contacts to log
+	                    Toast.makeText(getActivity(), log, Toast.LENGTH_LONG).show();
+	            	
+	                }			
+					
+				}  	
+            	
+            }
+        });
+    	
         return view;
     }
+
     
     @Override
     public void onMapReady() {
