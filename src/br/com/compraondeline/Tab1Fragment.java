@@ -27,9 +27,7 @@ import br.com.model.DataHandler;
  *
  */
 public class Tab1Fragment extends Fragment {
-	
-	private ListView et_resultado;
-	
+		
 	private ListView listProdView;
 	
 	/*private BuscaCapt buscaCapt;

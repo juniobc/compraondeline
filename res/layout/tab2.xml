@@ -1,49 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:background="#FFFFFF"
-  android:orientation="vertical" >
+  android:background="#FFFFFF" >
   
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E3E3E3"
-        android:gravity="center" >
-        
-        <TableRow>
-            
-            <TextView 
-			    android:id="@+id/txt_nm_prod"
-			    android:layout_width="100dp"
-	            android:layout_height="50dp"
-	            android:text="Nome: "/>
-            
-            <EditText  
-	            android:id="@+id/nm_prod"
-			    android:layout_width="50dp" 
-			    android:layout_height="40dp" 
-			    android:layout_weight="1"
-			    android:layout_marginLeft="10dp"
-			    android:layout_marginTop="10dp"
-			    android:layout_marginBottom="10dp"
-			    android:layout_marginRight="10dp"
-			    android:background="@drawable/text_borda" />
+    <LinearLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+  
+	    <TableLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#E3E3E3"
+	        android:gravity="center" >
 	        
-            
-        </TableRow>
-        
-        <TableRow>
-            
+	        <TableRow>
+	            
 	            <TextView 
-				    android:id="@+id/txt_preco_prod"
+				    android:id="@+id/txt_nm_prod"
 				    android:layout_width="100dp"
 		            android:layout_height="50dp"
-		            android:text="Preço: "/>
+		            android:text="Nome: "/>
 	            
 	            <EditText  
-		            android:id="@+id/preco_prod"
+		            android:id="@+id/nm_prod"
 				    android:layout_width="50dp" 
 				    android:layout_height="40dp" 
 				    android:layout_weight="1"
@@ -52,80 +33,105 @@
 				    android:layout_marginBottom="10dp"
 				    android:layout_marginRight="10dp"
 				    android:background="@drawable/text_borda" />
-            
-            </TableRow>
-            
-        	<TableRow>
-            
-	            <TextView 
-				    android:id="@+id/txt_quant_prod"
-				    android:layout_width="100dp"
-		            android:layout_height="50dp"
-		            android:text="Qunatidade: "/>
+		        
 	            
-	            <EditText  
-		            android:id="@+id/quant_prod"
-				    android:layout_width="50dp" 
-				    android:layout_height="40dp" 
-				    android:layout_weight="1"
-				    android:layout_marginLeft="10dp"
-				    android:layout_marginTop="10dp"
-				    android:layout_marginBottom="10dp"
-				    android:layout_marginRight="10dp"
-				    android:background="@drawable/text_borda" />
-            
-            </TableRow>
-            
-        	<TableRow>
-            
-	            <TextView 
-				    android:id="@+id/txt_end_prod"
-				    android:layout_width="100dp"
-		            android:layout_height="50dp"
-		            android:text="Endereço: "/>
+	        </TableRow>
+	        
+	        <TableRow>
 	            
-	            <EditText  
-		            android:id="@+id/end_prod"
-				    android:layout_width="50dp" 
-				    android:layout_height="40dp" 
-				    android:layout_weight="1"
-				    android:layout_marginLeft="10dp"
-				    android:layout_marginTop="10dp"
-				    android:layout_marginBottom="10dp"
-				    android:layout_marginRight="10dp"
-				    android:background="@drawable/text_borda" />
-            
-            </TableRow>
-            
-        	<TableRow>
-            
-	            <Button
-	            android:id="@+id/btn_busca_prod"
-	            android:layout_width="wrap_content"
-	            android:layout_height="32dp"
-	            android:layout_marginBottom="10dp"
-	            android:layout_marginTop="10dp"
-	            android:layout_marginRight="10dp"
-	            android:layout_weight="1"
-	            android:background="@drawable/buscar_borda"
-	            android:text="Cadastrar"
-	            android:onClick="cadastrar"
-	            android:textColor="#FFFFFF"
-	            android:textSize="12sp" />
-            
-            </TableRow>	
-
-    </TableLayout>
+		            <TextView 
+					    android:id="@+id/txt_preco_prod"
+					    android:layout_width="100dp"
+			            android:layout_height="50dp"
+			            android:text="Preço: "/>
+		            
+		            <EditText  
+			            android:id="@+id/preco_prod"
+					    android:layout_width="50dp" 
+					    android:layout_height="40dp" 
+					    android:layout_weight="1"
+					    android:layout_marginLeft="10dp"
+					    android:layout_marginTop="10dp"
+					    android:layout_marginBottom="10dp"
+					    android:layout_marginRight="10dp"
+					    android:background="@drawable/text_borda" />
+	            
+	            </TableRow>
+	            
+	        	<TableRow>
+	            
+		            <TextView 
+					    android:id="@+id/txt_quant_prod"
+					    android:layout_width="100dp"
+			            android:layout_height="50dp"
+			            android:text="Qunatidade: "/>
+		            
+		            <EditText  
+			            android:id="@+id/quant_prod"
+					    android:layout_width="50dp" 
+					    android:layout_height="40dp" 
+					    android:layout_weight="1"
+					    android:layout_marginLeft="10dp"
+					    android:layout_marginTop="10dp"
+					    android:layout_marginBottom="10dp"
+					    android:layout_marginRight="10dp"
+					    android:background="@drawable/text_borda" />
+	            
+	            </TableRow>
+	            
+	        	<TableRow>
+	            
+		            <TextView 
+					    android:id="@+id/txt_end_prod"
+					    android:layout_width="100dp"
+			            android:layout_height="50dp"
+			            android:text="Endereço: "/>
+		            
+		            <EditText  
+			            android:id="@+id/end_prod"
+					    android:layout_width="50dp" 
+					    android:layout_height="40dp" 
+					    android:layout_weight="1"
+					    android:layout_marginLeft="10dp"
+					    android:layout_marginTop="10dp"
+					    android:layout_marginBottom="10dp"
+					    android:layout_marginRight="10dp"
+					    android:background="@drawable/text_borda" />
+	            
+	            </TableRow>
+	            
+	        	<TableRow>
+	            
+		            <Button
+		            android:id="@+id/btn_busca_prod"
+		            android:layout_width="wrap_content"
+		            android:layout_height="32dp"
+		            android:layout_marginBottom="10dp"
+		            android:layout_marginTop="10dp"
+		            android:layout_marginRight="10dp"
+		            android:layout_weight="1"
+		            android:background="@drawable/buscar_borda"
+		            android:text="Cadastrar"
+		            android:onClick="cadastrar"
+		            android:textColor="#FFFFFF"
+		            android:textSize="12sp" />
+	            
+	            </TableRow>	
+	
+	    </TableLayout>
+	    
+	    <LinearLayout
+	     android:orientation="vertical" 
+	     android:layout_width="fill_parent" 
+	     android:layout_height="fill_parent"> 
+	    
+		    <fragment android:id="@+id/map"
+	        android:layout_width="fill_parent" 
+	        android:layout_height="fill_parent" 
+	        class="com.google.android.gms.maps.SupportMapFragment"/>
+	         
+	    </LinearLayout>
     
-    <LinearLayout
-     android:orientation="vertical" android:layout_width="match_parent" 
-     android:layout_height="match_parent"> 
-    
-	    <fragment android:id="@+id/map"
-        android:layout_width="fill_parent" 
-        android:layout_height="fill_parent" 
-        class="com.google.android.gms.maps.SupportMapFragment"/>
-         
     </LinearLayout>
     
-</LinearLayout>
+</ScrollView>

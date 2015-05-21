@@ -10,6 +10,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.entidade.Produto;
 import br.com.localizacao.GPSTracker;
@@ -80,7 +81,7 @@ public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapRea
     	nmQuant = (EditText) view.findViewById(R.id.quant_prod);
     	
     	cadastrar = (Button) view.findViewById(R.id.btn_busca_prod);
-    	cadastrar.setOnClickListener(new OnClickListener() {
+    	/*cadastrar.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -117,7 +118,7 @@ public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapRea
 				}  	
             	
             }
-        });
+        });*/
     	
         return view;
     }
@@ -129,6 +130,30 @@ public class Tab2Fragment extends Fragment implements CustomMapFragment.OnMapRea
         mMap.setMyLocationEnabled(true);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(this.nrLat, this.nrLong), 15);
         mMap.animateCamera(cameraUpdate);
+        
+        buscaProduto();
+        
+        for (Produto object : buscaProduto()) {
+			System.out.println(object);
+			mMap.addMarker(new MarkerOptions()
+	        .position(new LatLng(Double.parseDouble(object.getNrLat().replace(",", ".")), 
+	        		Double.parseDouble(object.getNrLong().replace(",", "."))))
+	        .title(object.getNome())
+	        );
+		}
+        
+    }
+    
+	public List<Produto> buscaProduto(){
+	    	
+	    	List<Produto> produtoList ;
+	    	
+	    	DataHandler db = new DataHandler(getActivity());
+	    	
+	    	produtoList = db.getAllProdutos();
+	    	
+	    	return produtoList;
+    	
     }
     
     public static void updateLocation(double nrLat, double nrLong){

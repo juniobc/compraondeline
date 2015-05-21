@@ -10,7 +10,7 @@ public class DataHandler extends SQLiteOpenHelper
 {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "compraondeline";
@@ -21,11 +21,14 @@ public class DataHandler extends SQLiteOpenHelper
     // Contacts Table Columns names
     private static final String KEY_ID = "cd_produto";
     private static final String KEY_NM_PROD = "nm_prod";
+    private static final String KEY_TP_UN_PROD = "tp_un_prod";
+    private static final String KEY_QT_TP_UN = "qt_tp_un";
     private static final String KEY_PRECO = "vl_prod";
+    private static final String KEY_QUANT = "qt_prod";
 	private static final String KEY_CD_BARRA= "cd_barra";
 	private static final String KEY_LAT = "cd_Lat";
 	private static final String KEY_LONG = "cd_long";
-	private static final String KEY_QUANT = "qt_prod";
+	private static final String KEY_TP_CAD = "tp_cad";
 
     public DataHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,8 +39,9 @@ public class DataHandler extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_PRODUTO + "("
 			+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NM_PROD + " TEXT,"
-			+ KEY_PRECO + " TEXT," + KEY_CD_BARRA + " TEXT," + KEY_LAT + " TEXT," + 
-			KEY_LONG + " TEXT," + KEY_QUANT + " TEXT" + ")";
+			+ KEY_TP_UN_PROD + " TEXT," + KEY_QT_TP_UN + " INTEGER,"
+			+ KEY_PRECO + " REAL," + KEY_CD_BARRA + " TEXT," + KEY_LAT + " TEXT," + 
+			KEY_LONG + " TEXT," + KEY_QUANT + " INTEGER," + KEY_TP_CAD + " INTEGER" + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
@@ -57,10 +61,13 @@ public class DataHandler extends SQLiteOpenHelper
 
         ContentValues values = new ContentValues();
         values.put(KEY_NM_PROD, produto.getNome());
+        values.put(KEY_TP_UN_PROD, produto.getTpUnidade());
+        values.put(KEY_QT_TP_UN, produto.getQtUnidade());
         values.put(KEY_PRECO, produto.getPreco());
+        values.put(KEY_QUANT, produto.getQuantidade());
 		values.put(KEY_LAT, produto.getNrLat());
 		values.put(KEY_LONG, produto.getNrLong());
-		values.put(KEY_QUANT, produto.getQuantidade());
+		values.put(KEY_TP_CAD, produto.getTpCad());
 
         // Inserting Row
         db.insert(TABLE_PRODUTO, null, values);
@@ -70,16 +77,28 @@ public class DataHandler extends SQLiteOpenHelper
     // Getting single contact
     Produto getProduto(int nm_prod) {
         SQLiteDatabase db = this.getReadableDatabase();
+        Boolean tpCad;
 
         Cursor cursor = db.query(TABLE_PRODUTO, new String[] { KEY_ID,
-									 KEY_NM_PROD, KEY_PRECO, KEY_CD_BARRA, KEY_QUANT, 
-									 KEY_LAT, KEY_LONG }, KEY_NM_PROD + "=?",
+									 KEY_NM_PROD, KEY_TP_UN_PROD, KEY_QT_TP_UN, KEY_PRECO, KEY_CD_BARRA, KEY_QUANT, 
+									 KEY_LAT, KEY_LONG, KEY_TP_CAD }, KEY_NM_PROD + "=?",
 								 new String[] { String.valueOf(nm_prod) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
+        
+        if(cursor.getInt(8) == 0){
+        	
+        	tpCad = false;
+        	
+        }else{
+        	
+        	tpCad = true;
+        	
+        }
 
-        Produto produto = new Produto(cursor.getString(1), cursor.getString(0), 
-									  cursor.getString(3), cursor.getString(4), cursor.getString(5));
+        Produto produto = new Produto(cursor.getString(1), cursor.getString(2), 
+									  cursor.getFloat(3), cursor.getFloat(4), cursor.getInt(5)
+									  , cursor.getString(6), cursor.getString(7), tpCad);
         // return contact
         return produto;
     }
@@ -87,8 +106,10 @@ public class DataHandler extends SQLiteOpenHelper
     // Getting All Contacts
     public List<Produto> getAllProdutos() {
         List<Produto> produtoList = new ArrayList<Produto>();
+        Boolean tpCad;
         // Select All Query
-        String selectQuery = "SELECT "+KEY_NM_PROD+", "+KEY_PRECO+", "+KEY_CD_BARRA+", "+KEY_QUANT+", "+KEY_LAT+", "+KEY_LONG+" FROM " + TABLE_PRODUTO;
+        String selectQuery = "SELECT "+KEY_NM_PROD+", "+KEY_TP_UN_PROD+", "+KEY_QT_TP_UN+", "+KEY_PRECO+", "+KEY_QUANT+", "
+        +KEY_CD_BARRA+", "+KEY_LAT+", "+KEY_LONG+", "+KEY_TP_CAD+" FROM " + TABLE_PRODUTO;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -98,10 +119,25 @@ public class DataHandler extends SQLiteOpenHelper
             do {
                 Produto produto = new Produto();
                 produto.setNome(cursor.getString(0));
-				produto.setPreco(cursor.getString(1));
-				produto.setQuantidade(cursor.getString(3));
-				produto.setNrLat(cursor.getString(4));
-				produto.setNrLong(cursor.getString(5));
+                produto.setTpUnidade(cursor.getString(1));
+                produto.setQtUnidade(cursor.getFloat(2));
+				produto.setPreco(cursor.getFloat(3));
+				produto.setQuantidade(cursor.getInt(4));
+				produto.setNrLat(cursor.getString(5));
+				produto.setNrLong(cursor.getString(6));
+				
+				if(cursor.getInt(7) == 0){
+		        	
+		        	tpCad = false;
+		        	
+		        }else{
+		        	
+		        	tpCad = true;
+		        	
+		        }
+				
+				produto.setTpCad(tpCad);
+				
                 // Adding contact to list
                 produtoList.add(produto);
             } while (cursor.moveToNext());
@@ -114,17 +150,32 @@ public class DataHandler extends SQLiteOpenHelper
     // Updating single contact
     public int updateProduto(Produto produto) {
         SQLiteDatabase db = this.getWritableDatabase();
+        int tpCad;
 
         ContentValues values = new ContentValues();
         values.put(KEY_NM_PROD, produto.getNome());
+        values.put(KEY_TP_UN_PROD, produto.getTpUnidade());
+        values.put(KEY_QT_TP_UN, produto.getQtUnidade());
         values.put(KEY_PRECO, produto.getPreco());
         values.put(KEY_CD_BARRA, produto.getCdBarra());
         values.put(KEY_QUANT, produto.getQuantidade());
         values.put(KEY_LAT, produto.getNrLat());
         values.put(KEY_LONG, produto.getNrLong());
+        
+        if(!produto.getTpCad()){
+        	
+        	tpCad = 0;
+        	
+        }else{
+        	
+        	tpCad = 1;
+        	
+        }
+        
+        values.put(KEY_TP_CAD, tpCad);
 
         // updating row
-        return db.update(TABLE_PRODUTO, values, KEY_NM_PROD + " = ?",
+        return db.update(TABLE_PRODUTO, values, KEY_ID + " = ?",
 						 new String[] { String.valueOf(produto.getNome()) });
     }
 

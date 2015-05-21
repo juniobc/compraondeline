@@ -4,25 +4,48 @@ import android.graphics.Bitmap;
 
 public class Produto {
 	
-	private String preco;
 	private String nome;
-	private String quantidade;
+	private float preco;
+	private int quantidade;
 	private String cdBarra;
 	private String nrLat;
 	private String nrLong;
-	
+	private String tpUnidade;
+	private float qtUnidade;
+	private boolean tpCad;
+
 	public Produto(){}
 	
-	public Produto(String preco, String nome, String quantidade, String nr_lat, String nr_long) {
+	public Produto(String nome, String tpUnidade, float qtUnidade, float preco, int quantidade, 
+			String nr_lat, String nr_long, boolean tpCad) {
 		
 		super();
 		
-		this.preco = preco;
 		this.nome = nome;
+		this.tpUnidade = tpUnidade;
+		this.qtUnidade = qtUnidade;
+		this.preco = preco;		
 		this.quantidade = quantidade;
 		this.nrLat = nr_lat;
 		this.nrLong = nr_long;
+		this.tpCad = tpCad;
 		
+	}
+	
+	public boolean getTpCad() {
+		return tpCad;
+	}
+
+	public void setTpCad(boolean tpCad) {
+		this.tpCad = tpCad;
+	}
+	
+	public String getTpUnidade() {
+		return tpUnidade;
+	}
+	
+	public float getQtUnidade() {
+		return qtUnidade;
 	}
 	
 	public String getNrLat(){
@@ -37,7 +60,7 @@ public class Produto {
 
 	}
 	
-	public String getPreco(){
+	public float getPreco(){
 		
 		return preco;
 		
@@ -49,7 +72,7 @@ public class Produto {
 		
 	}
 	
-	public String getQuantidade(){
+	public int getQuantidade(){
 		
 		return quantidade;
 		
@@ -61,7 +84,7 @@ public class Produto {
 		
 	}
 	
-	public String setPreco(String preco){
+	public float setPreco(float preco){
 		
 		this.preco = preco;
 		
@@ -77,7 +100,7 @@ public class Produto {
 		
 	}
 	
-	public String setQuantidade(String quantidade){
+	public int setQuantidade(int quantidade){
 		
 		this.quantidade = quantidade;
 		
@@ -103,6 +126,14 @@ public class Produto {
 
 		this.nrLong = nrLong;
 
+	}
+	
+	public void setTpUnidade(String tpUnidade) {
+		this.tpUnidade = tpUnidade;
+	}	
+
+	public void setQtUnidade(float qtUnidade) {
+		this.qtUnidade = qtUnidade;
 	}
 	
 	

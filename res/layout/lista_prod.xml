@@ -9,13 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         
-        <TextView
+        <!-- <TextView
             android:id="@+id/nm_produto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textColor="#3FA9F5"
-            android:text="Joao e Maria"
             android:layout_marginLeft="15dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
         
@@ -37,7 +36,7 @@
             android:textColor="#3FA9F5"
             android:text="teste2"
             android:layout_marginLeft="15dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall" />-->
         
     </LinearLayout>
 
@@ -45,8 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <!-- <TextView
-            android:id="@+id/tv_numero"
+        <TextView
+            android:id="@+id/nm_produto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -57,7 +56,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="30sp" />
         <TextView
-            android:id="@+id/tv_dist"
+            android:id="@+id/qt_produto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -67,7 +66,7 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall" />
         <TextView
-            android:id="@+id/tv_tempo"
+            android:id="@+id/vl_produto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -75,7 +74,7 @@
             android:text="20 min"
             android:textStyle="bold"
             android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceSmall" />-->
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
 
