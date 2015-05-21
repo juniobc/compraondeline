@@ -2,12 +2,11 @@ package br.com.compraondeline;
 
 import java.io.IOException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
+
+import java.util.List;
+
+import br.com.compraondeline.auxiliar.ListaProdutos;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -20,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import br.com.entidade.Produto;
+import br.com.model.DataHandler;
   
 /**
  * @author mwho
@@ -28,6 +29,8 @@ import android.widget.Toast;
 public class Tab1Fragment extends Fragment {
 	
 	private ListView et_resultado;
+	
+	private ListView listProdView;
 	
 	/*private BuscaCapt buscaCapt;
     private BuscaNfe buscaNfe;
@@ -43,6 +46,14 @@ public class Tab1Fragment extends Fragment {
     	
     	View view = inflater.inflate(R.layout.tab1, container, false); 	
     	
+    	//NotaFiscal nfe = new NotaFiscal(emp, produto, 5, json.getString("dt_emis"));
+
+		ListaProdutos adapter = new ListaProdutos(getActivity(),R.layout.lista_prod,buscaProduto());       
+		
+		listProdView = (ListView) view.findViewById(R.id.list_prod);
+		
+		listProdView.setAdapter(adapter);
+    	
         if (container == null) {
             // We have different layouts, and in one of them this
             // fragment's containing frame doesn't exist.  The fragment
@@ -55,6 +66,18 @@ public class Tab1Fragment extends Fragment {
         }
         
         return view;
+    }
+    
+    public List<Produto> buscaProduto(){
+    	
+    	List<Produto> produtoList ;
+    	
+    	DataHandler db = new DataHandler(getActivity());
+    	
+    	produtoList = db.getAllProdutos();
+    	
+    	return produtoList;
+    	
     }
     
 

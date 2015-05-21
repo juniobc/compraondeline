@@ -46,7 +46,7 @@
     </TableLayout>
     
     <ListView
-           android:id="@+id/produtos_cb"
+           android:id="@+id/list_prod"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_weight="1"

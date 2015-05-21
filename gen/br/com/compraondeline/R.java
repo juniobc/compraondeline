@@ -394,6 +394,9 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010014;
     }
     public static final class color {
+        public static final int SkyBlue=0x7f070017;
+        public static final int azul=0x7f07001d;
+        public static final int cinza=0x7f07001c;
         public static final int common_action_bar_splitter=0x7f070009;
         /**  Sign-in Button Colors 
          */
@@ -406,8 +409,11 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f070006;
         public static final int common_signin_btn_light_text_focused=0x7f070007;
         public static final int common_signin_btn_light_text_pressed=0x7f070005;
-        public static final int common_signin_btn_text_dark=0x7f070017;
-        public static final int common_signin_btn_text_light=0x7f070018;
+        public static final int common_signin_btn_text_dark=0x7f07001e;
+        public static final int common_signin_btn_text_light=0x7f07001f;
+        public static final int laranja=0x7f070019;
+        public static final int verde=0x7f07001a;
+        public static final int vermelho=0x7f07001b;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f07000f;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -426,8 +432,9 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f070011;
         public static final int wallet_holo_blue_light=0x7f070015;
         public static final int wallet_link_text_light=0x7f070016;
-        public static final int wallet_primary_text_holo_light=0x7f070019;
-        public static final int wallet_secondary_text_holo_dark=0x7f07001a;
+        public static final int wallet_primary_text_holo_light=0x7f070020;
+        public static final int wallet_secondary_text_holo_dark=0x7f070021;
+        public static final int white=0x7f070018;
     }
     public static final class drawable {
         public static final int buscar_borda=0x7f020000;
@@ -474,8 +481,8 @@ containing a value of this type.
         public static final int adjust_height=0x7f090000;
         public static final int adjust_width=0x7f090001;
         public static final int book_now=0x7f090010;
-        public static final int btn_busca_nfe=0x7f090020;
-        public static final int btn_busca_prod=0x7f090029;
+        public static final int btn_busca_nfe=0x7f090024;
+        public static final int btn_busca_prod=0x7f09002c;
         public static final int busca_cd_barra=0x7f09001a;
         public static final int busca_prod=0x7f09001b;
         public static final int busca_prod1=0x7f09001e;
@@ -483,38 +490,41 @@ containing a value of this type.
         public static final int buyButton=0x7f09000c;
         public static final int buy_now=0x7f090011;
         public static final int buy_with_google=0x7f090012;
-        public static final int chave_acesso=0x7f09001f;
+        public static final int chave_acesso=0x7f090023;
         public static final int classic=0x7f090014;
         public static final int donate_with_google=0x7f090013;
-        public static final int end_prod=0x7f090028;
+        public static final int end_prod=0x7f09002b;
         public static final int grayscale=0x7f090015;
         public static final int holo_dark=0x7f090007;
         public static final int holo_light=0x7f090008;
         public static final int hybrid=0x7f090003;
         public static final int list_prod=0x7f09001c;
-        public static final int map=0x7f09002a;
+        public static final int map=0x7f09002d;
         public static final int match_parent=0x7f09000e;
         public static final int monochrome=0x7f090016;
         public static final int nm_prod=0x7f090019;
+        public static final int nm_produto=0x7f090020;
         public static final int none=0x7f090002;
         public static final int normal=0x7f090004;
-        public static final int preco_prod=0x7f090024;
+        public static final int preco_prod=0x7f090027;
         public static final int production=0x7f090009;
-        public static final int produtos_cb=0x7f090021;
-        public static final int quant_prod=0x7f090026;
+        public static final int qt_produto=0x7f090021;
+        public static final int quant_prod=0x7f090029;
+        public static final int row=0x7f09001f;
         public static final int sandbox=0x7f09000a;
         public static final int satellite=0x7f090005;
         public static final int selectionDetails=0x7f09000d;
         public static final int slide=0x7f090017;
         public static final int strict_sandbox=0x7f09000b;
-        public static final int tabsLayout=0x7f09002b;
+        public static final int tabsLayout=0x7f09002e;
         public static final int terrain=0x7f090006;
-        public static final int txt_aba=0x7f09002c;
-        public static final int txt_end_prod=0x7f090027;
-        public static final int txt_nm_prod=0x7f090022;
-        public static final int txt_preco_prod=0x7f090023;
-        public static final int txt_quant_prod=0x7f090025;
+        public static final int txt_aba=0x7f09002f;
+        public static final int txt_end_prod=0x7f09002a;
+        public static final int txt_nm_prod=0x7f090025;
+        public static final int txt_preco_prod=0x7f090026;
+        public static final int txt_quant_prod=0x7f090028;
         public static final int viewpager=0x7f090018;
+        public static final int vl_produto=0x7f090022;
         public static final int wrap_content=0x7f09000f;
     }
     public static final class integer {
@@ -524,9 +534,10 @@ containing a value of this type.
         public static final int activity_main=0x7f030000;
         public static final int compraondeline=0x7f030001;
         public static final int home=0x7f030002;
-        public static final int tab1=0x7f030003;
-        public static final int tab2=0x7f030004;
-        public static final int tabs_bg=0x7f030005;
+        public static final int lista_prod=0x7f030003;
+        public static final int tab1=0x7f030004;
+        public static final int tab2=0x7f030005;
+        public static final int tabs_bg=0x7f030006;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f040000;
